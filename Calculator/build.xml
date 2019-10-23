@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="Calculator" basedir="." default="run">
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="test/src" location="test/src"/>
+	<property name="test/bin" location="test/bin"/>
+	<property environment="env"/>
+	<path id="classpath">
+		<pathelement location="${bin}" /> 
+		<pathelement location="${test/bin}"/>
+		<fileset dir="${env.JUNIT}"/>
+	</path>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete dir="${test/bin}"/>
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${test/bin}"/>
+	</target>
+
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+		</javac>
+	</target>
+	<target name="testcompile" depends="compile">
+		<javac srcdir="${test/src}" destdir="${test/bin}" includeantruntime="false">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+	<target name="allcompile" depends="compile, testcompile"></target>
+	<target name="run" depends="allcompile">
+		<junitlauncher printSummary="true"> 
+			<classpath refid="classpath" /> 
+			<testclasses outputdir="test">
+				<fileset dir="${test/bin}">
+					<include name="edu/umb/cs680/hw01/*Test.class"/>
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true"/>
+			</testclasses>
+		</junitlauncher>
+	</target>
+</project>
