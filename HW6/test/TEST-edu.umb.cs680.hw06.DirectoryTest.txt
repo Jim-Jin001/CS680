@@ -1,3 +1,5 @@
 Testcase: edu.umb.cs680.hw06.DirectoryTest
-Test: directoryTest() took 27 milli sec(s)
-Tests run: 1, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 47 milli sec(s)
+Test: verifyDirectoryEqualityCode() took 23 milli sec(s)
+Test: verifyDirectoryEqualityHome() took 1 milli sec(s)
+Test: verifyDirectoryEqualityRoot() took 0 milli sec(s)
+Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 38 milli sec(s)

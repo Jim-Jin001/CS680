@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class FileSystem {
 
-    private LinkedList<Directory> rootDirs;
+    private LinkedList<Directory> rootDirs = new LinkedList<Directory>();
 
     private FileSystem(){}
     private static FileSystem fileSystem = null;

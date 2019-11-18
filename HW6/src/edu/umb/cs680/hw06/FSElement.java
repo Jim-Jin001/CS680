@@ -8,19 +8,21 @@ public abstract class FSElement {
     private LocalDateTime creationTime;
     private Directory parent;
 
-
     public FSElement(Directory parent, String name, int size, LocalDateTime creationTime) {
-        this.parent = parent;
         this.name = name;
         this.size = size;
         this.creationTime = creationTime;
+        if (parent != null) {
+            this.parent = parent;
+            parent.appendChild(this);
+        } else {
+            // the directory is root, then the parent of root is itself
+            this.parent = ((Directory) this);
+        }
+
     }
 
     public Directory getParent() {
-        // the directory is root, then the parent of root is itself
-        if(this.parent == null) {
-            return ((Directory) this);
-        }
         return parent;
     }
 
@@ -49,5 +51,6 @@ public abstract class FSElement {
     }
 
     abstract public boolean isDirectory();
+
     abstract public boolean isFile();
 }
