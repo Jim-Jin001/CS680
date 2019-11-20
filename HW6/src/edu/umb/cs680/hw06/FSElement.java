@@ -13,13 +13,11 @@ public abstract class FSElement {
         this.size = size;
         this.creationTime = creationTime;
         if (parent != null) {
-            this.parent = parent;
             parent.appendChild(this);
         } else {
             // the directory is root, then the parent of root is itself
-            this.parent = ((Directory) this);
+            this.parent = null;
         }
-
     }
 
     public Directory getParent() {
@@ -48,6 +46,9 @@ public abstract class FSElement {
 
     public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
+    }
+    public void setParent(Directory parent) {
+        this.parent = parent;
     }
 
     abstract public boolean isDirectory();

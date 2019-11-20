@@ -21,6 +21,7 @@ public class FileTest {
     File f = new File(code, "f", 6, testDate2);
 
     private String[] fileToStringArray(File f) {
+        // isFile, getName, getSize, getCreationTime, getParentName, isDirectory
         String[] fileInfo = { String.valueOf(f.isFile()), f.getName(), Integer.toString(f.getSize()),
                 f.getCreationTime().toString(), f.getParent().getName(), String.valueOf(f.isDirectory()) };
         return fileInfo;

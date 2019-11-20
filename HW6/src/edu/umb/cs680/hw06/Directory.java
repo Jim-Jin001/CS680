@@ -10,19 +10,21 @@ public class Directory extends FSElement {
     public Directory(Directory parent, String name, int size, LocalDateTime creationTime){
         super(parent, name, size, creationTime);
     }
-
+    // return first level children that whose parent is this diretory.
     public LinkedList<FSElement>getChildren() {
         return this.children;
     }
 
     public void appendChild(FSElement child) {
         this.children.add(child);
+        child.setParent(this);
     }
 
     public int countChildren() {
         return this.children.size();
     }
-
+    
+    // return first level directories that whose parent is this diretory.
     public LinkedList<Directory> getSubDirectories() {
         LinkedList<Directory> subDirectories = new LinkedList<Directory>();
         for(FSElement fse: children) {
@@ -32,10 +34,11 @@ public class Directory extends FSElement {
         return subDirectories;
     }
 
+    // return first level files that whose parent is this diretory.
     public LinkedList<File> getFiles() {
         LinkedList<File> files = new LinkedList<File>();
         for(FSElement fse: children) {
-            if(fse.isDirectory())
+            if(fse.isFile())
                 files.add((File) fse);
         }
         return files;
@@ -44,9 +47,11 @@ public class Directory extends FSElement {
     public int getTotalSize() {
         int totalSize = 0;
         for(FSElement fse: children) {
-            if(fse.isDirectory()) 
+            if(fse.isDirectory()) {
                 totalSize += ((Directory) fse).getTotalSize();
-            totalSize += fse.getSize();
+            } else {
+                totalSize += fse.getSize();
+            }
         }
         return totalSize;
     }
