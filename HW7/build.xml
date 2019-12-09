@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="PrimeGenerator" basedir="." default="run">
+<project name="HW7" basedir="." default="run">
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
 	<property name="test/src" location="test/src"/>

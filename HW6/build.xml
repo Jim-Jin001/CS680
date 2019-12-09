@@ -34,7 +34,7 @@
 	<target name="allcompile" depends="compile, testcompile"></target>
 	<target name="run" depends="allcompile">
 		<junitlauncher printSummary="true"> 
-			<classpath refid="classpath" /> 
+			<classpath refid="classpath" />
 			<testclasses outputdir="test">
 				<fileset dir="${test/bin}">
 					<include name="edu/umb/cs680/hw06/*Test.class"/>

@@ -80,8 +80,8 @@ public class LinkTest {
 
     @Test
     public void verifyLinkEqualityY() {
-        Directory expected = b;
-        FSElement actual = x.getTarget();
+        File expected = b;
+        FSElement actual = y.getTarget();
         assertSame(actual, expected);
     }
 }
