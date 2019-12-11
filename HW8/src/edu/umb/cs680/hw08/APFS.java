@@ -16,8 +16,8 @@ public class APFS extends FileSystem {
 		return instance;
     }
     
-    protected FSElement createDefaultRoot() {
-        APFS.root = new ApfsDirectory(null, "root", 0, date,
+    protected ApfsElement createDefaultRoot() {
+        APFS.root = new ApfsDirectory(null, APFS.name, 0, date,
                 "admin", date);
         return APFS.root;
     }

@@ -9,8 +9,13 @@ public class ApfsLink extends ApfsElement {
 
 
     // constructor
-    public ApfsLink(ApfsDirectory parent, String name, int size, LocalDateTime creationTime, ApfsElement target, 
-                String ownerName, LocalDateTime modifiedDate) {
+    public ApfsLink(ApfsDirectory parent, 
+                    String name, 
+                    int size, 
+                    LocalDateTime creationTime, 
+                    ApfsElement target, 
+                    String ownerName, 
+                    LocalDateTime modifiedDate) {
         super(parent, name, size, creationTime, ownerName, modifiedDate);
         this.target = target;
     }
@@ -22,7 +27,13 @@ public class ApfsLink extends ApfsElement {
 
     // get target size
     public int getTargetSize(){
-        return target.getSize();
+        if(target.isDirectory()) {
+            return ((ApfsDirectory) target).getTotalSize();
+        } else if(target.isLink()) {
+            return 0;
+        } else {
+            return target.getSize();
+        }
     }
 
     // check if target is link or not.
@@ -42,7 +53,7 @@ public class ApfsLink extends ApfsElement {
         this.target = target;
     }
     // get target
-    public FSElement getTarget(){
+    public ApfsElement getTarget(){
         return this.target;
     }
 }

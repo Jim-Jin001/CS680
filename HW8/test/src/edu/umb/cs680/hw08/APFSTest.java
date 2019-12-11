@@ -6,6 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class APFSTest {
 
+    private String[] apfsElementToArray(ApfsElement e) {
+        // 
+        String[] eInfo = {e.getName(), 
+                            e.getOwnerName(), 
+                            Integer.toString(e.getSize())};
+        return eInfo;
+    }
     @Test
     public void sameAPFSTest() {
         APFS APFS1 = APFS.getInstance();
@@ -17,9 +24,18 @@ public class APFSTest {
     public void getRootDirTest() {
         APFS APFS1 = APFS.getInstance();
         APFS1.initFileSystem("myapfs", 100);
-        String actual = APFS.getName();
-        String expected = "myapfs";
-        assertSame(actual, expected);
+        String[] actual = this.apfsElementToArray(APFS1.getRootDir());
+        String[] expected = {"myapfs", "admin", "0"};
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void createDefaultRootTest() {
+        APFS APFS1 = APFS.getInstance();
+        ApfsDirectory root = APFS1.getRootDir();
+        String[] actual = this.apfsElementToArray(APFS1.getRootDir());
+        String[] expected = {"myapfs", "admin", "0"};
+        assertArrayEquals(actual, expected);
     }
 
 }

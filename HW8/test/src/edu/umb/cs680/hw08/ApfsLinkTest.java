@@ -14,36 +14,22 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class LinkTest {
+public class ApfsLinkTest {
 
     static private LocalDateTime testDate1 = LocalDateTime.now();
     static private LocalDateTime testDate2 = LocalDateTime.now();
-    static Directory root = new Directory(null, "Root", 0, testDate1);
-    static Directory home = new Directory(null, "Home", 0, testDate1);
-    static Directory applications = new Directory(null, "Applications", 0, testDate1);
-    static Directory code = new Directory(null, "Code", 0, testDate2);
-    static File a = new File(null, "a", 1, testDate1);
-    static File b = new File(null, "b", 2, testDate2);
-    static File c = new File(null, "c", 3, testDate1);
-    static File d = new File(null, "d", 4, testDate2);
-    static File e = new File(null, "e", 5, testDate2);
-    static File f = new File(null, "f", 6, testDate2);
-    static Link x = new Link(null, "x", 6, testDate1, null);
-    static Link y = new Link(null, "y", 6, testDate2, null);
-
-    // private String[] dirToStringArray(Directory d) {
-    //     String parentName = null;
-    //     Directory parent = d.getParent();
-    //     if(parent != null) {
-    //         parentName = parent.getName();
-    //     }
-    //     // isFile, getName, getSize, getCreationTime, getParent, isDirectory,
-    //     // getTotalSize,countChildren
-    //     String[] dirInfo = {String.valueOf(d.isFile()), d.getName(), Integer.toString(d.getSize()),
-    //             d.getCreationTime().toString(), parentName, String.valueOf(d.isDirectory()),
-    //             Integer.toString(d.getTotalSize()), Integer.toString(d.countChildren())};
-    //     return dirInfo;
-    // }
+    static ApfsDirectory root = new ApfsDirectory(null, "root", 0, testDate1, "admin", testDate2);
+    static ApfsDirectory home = new ApfsDirectory(null, "Home", 0, testDate1, "admin", testDate2);
+    static ApfsDirectory applications = new ApfsDirectory(null, "Applications", 0, testDate1, "admin", testDate2);
+    static ApfsDirectory code = new ApfsDirectory(null, "Code", 0, testDate2, "admin", testDate2);
+    static ApfsFile a = new ApfsFile(null, "a", 1, testDate1, "admin", testDate2);
+    static ApfsFile b = new ApfsFile(null, "b", 2, testDate2, "admin", testDate2);
+    static ApfsFile c = new ApfsFile(null, "c", 3, testDate1, "admin", testDate2);
+    static ApfsFile d = new ApfsFile(null, "d", 4, testDate2, "admin", testDate2);
+    static ApfsFile e = new ApfsFile(null, "e", 5, testDate2, "admin", testDate2);
+    static ApfsFile f = new ApfsFile(null, "f", 6, testDate2, "admin", testDate2);
+    static ApfsLink x = new ApfsLink(null, "x", 0, testDate1, null, "admin", testDate2);
+    static ApfsLink y = new ApfsLink(null, "y", 0, testDate2, null, "admin", testDate2);
 
     @BeforeAll
     static void init() {
@@ -70,18 +56,61 @@ public class LinkTest {
         // link y to file b
         y.setTarget(b);
     }
-
+    @Order(1)
     @Test
-    public void verifyLinkEqualityX() {
-        Directory expected = applications;
-        FSElement actual = x.getTarget();
+    public void verifyLinkTest() {
+        Boolean actual = x.isLink();
+        Boolean expected = true;
         assertSame(actual, expected);
     }
-
+    @Order(2)
+    @Test
+    public void verifyTargetSizeTest() {
+        int actual = x.getTargetSize();
+        int expected = 3;
+        assertSame(actual, expected);
+    }
+    @Order(3)
+    @Test
+    public void verifyTargetIsLinkTest() {
+        Boolean actual = x.targetisLink();
+        Boolean expected = false;
+        assertSame(actual, expected);
+    }
+    @Order(4)
+    @Test
+    public void verifyTargetIsFileTest() {
+        Boolean actual = x.targetisFile();
+        Boolean expected = false;
+        assertSame(actual, expected);
+    }
+    @Order(5)
+    @Test
+    public void verifyTargetIsDirectoryTest() {
+        Boolean actual = x.targetisDirectory();
+        Boolean expected = true;
+        assertSame(actual, expected);
+    }
+    @Order(6)
+    @Test
+    public void setTargetTest() {
+        x.setTarget(code);
+        ApfsElement actual = x.getTarget();
+        ApfsDirectory expected = code;
+        assertSame(actual, expected);
+    }
+    @Order(7)
+    @Test
+    public void verifyLinkEqualityX() {
+        ApfsDirectory expected = code;
+        ApfsElement actual = x.getTarget();
+        assertSame(actual, expected);
+    }
+    @Order(8)
     @Test
     public void verifyLinkEqualityY() {
-        File expected = b;
-        FSElement actual = y.getTarget();
+        ApfsFile expected = b;
+        ApfsElement actual = y.getTarget();
         assertSame(actual, expected);
     }
 }

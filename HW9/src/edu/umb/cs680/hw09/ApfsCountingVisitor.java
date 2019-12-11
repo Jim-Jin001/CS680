@@ -22,14 +22,14 @@ public class ApfsCountingVisitor implements ApfsFSVisitor {
 	}
 	
 	public int getDirectoryNum() {
-		return directoryNum;
+		return this.directoryNum;
 	}
 	
 	public int getFileNum() {
-		return fileNum;
+		return this.fileNum;
 	}
 	public int getLinkNum() {
-		return linkNum;
+		return this.linkNum;
 	}
 
 }

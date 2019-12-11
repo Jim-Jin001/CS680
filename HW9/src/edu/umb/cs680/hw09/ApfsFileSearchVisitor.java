@@ -23,7 +23,7 @@ public class ApfsFileSearchVisitor implements ApfsFSVisitor {
 	
 	@Override
 	public void visit(ApfsFile file) {
-		if (file.getName().contains(fileName)) {
+		if (file.getName().equals(fileName)) {
 			foundFiles.add(file);
 		}
 	}

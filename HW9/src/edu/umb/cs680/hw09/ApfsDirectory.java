@@ -9,8 +9,12 @@ public class ApfsDirectory extends ApfsElement {
     private LinkedList<ApfsElement> children =  new LinkedList<ApfsElement>();
 
     // contructor
-    public ApfsDirectory(ApfsDirectory parent, String name, int size, LocalDateTime creationTime,
-                        String ownerName, LocalDateTime modifiedDate){
+    public ApfsDirectory(ApfsDirectory parent, 
+                            String name, 
+                            int size, 
+                            LocalDateTime creationTime,
+                            String ownerName, 
+                            LocalDateTime modifiedDate){
         super(parent, name, size, creationTime, ownerName, modifiedDate);
     }
     // return first level children that whose parent is this diretory.
@@ -20,8 +24,8 @@ public class ApfsDirectory extends ApfsElement {
     }
     // append child
     @Override
-    public void appendChild(ApfsElement child) {
-        this.children.add(child);
+    public void appendChild(FSElement child) {
+        this.children.add((ApfsElement) child);
         child.setParent(this);
     }
     // count the number of children
@@ -64,5 +68,12 @@ public class ApfsDirectory extends ApfsElement {
     @Override
     public boolean isDirectory() {
         return true;
+    }
+    //acept visitor
+    public void accept(ApfsFSVisitor v) {
+        v.visit(this);
+        for (ApfsElement e: children) {
+			e.accept(v);
+		}
     }
 }

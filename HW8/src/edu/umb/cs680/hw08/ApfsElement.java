@@ -11,7 +11,12 @@ public class ApfsElement extends FSElement {
 
     
 
-    public ApfsElement(ApfsDirectory parent, String name, int size, LocalDateTime creationTime, String ownerName, LocalDateTime modifiedDate) {
+    public ApfsElement(ApfsDirectory parent, 
+                        String name, 
+                        int size, 
+                        LocalDateTime creationTime, 
+                        String ownerName, 
+                        LocalDateTime modifiedDate) {
         super(parent, name, size, creationTime);
         this.ownerName = ownerName;
         this.modifiedDate = modifiedDate;
@@ -23,8 +28,8 @@ public class ApfsElement extends FSElement {
     }
 
     // add child
-    public void appendChild(ApfsElement child) {
-        this.ApfsChildren.add(child);
+    public void appendChild(FSElement child) {
+        this.ApfsChildren.add((ApfsElement) child);
     }
 
     // is Directory
@@ -39,4 +44,21 @@ public class ApfsElement extends FSElement {
     public boolean isLink() {
         return false;
     }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
 }

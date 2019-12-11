@@ -6,12 +6,17 @@ public abstract class FSElement {
     private String name;
     private LocalDateTime createDate;
     private int size;
-    private ApfsDirectory parent;
+    private FSElement parent;
 
     // constructor
-    public FSElement(ApfsDirectory parent, String name, int size, LocalDateTime createDate) {
+    public FSElement(FSElement parent, String name, int size, LocalDateTime createDate) {
         this.name = name;
-        this.parent = parent;
+        if (parent != null) {
+            parent.appendChild(this);
+        } else {
+            // the directory is root, then the parent of root is itself
+            this.parent = null;
+        }
         this.size = size;
         this.createDate = createDate;
     }
@@ -24,14 +29,16 @@ public abstract class FSElement {
 
     // is Link
     public abstract boolean isLink();
+    // append child
+    public abstract void appendChild(FSElement parent);
     
     // get parent
-    public ApfsDirectory getParent() {
+    public FSElement getParent() {
         return this.parent;
     }
 
     // set parent
-    public void setParent(ApfsDirectory parent) {
+    public void setParent(FSElement parent) {
         this.parent = parent;
     }
 
@@ -54,13 +61,12 @@ public abstract class FSElement {
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
-    // get name
+
     public String getName() {
         return name;
     }
-    // set name
+
     public void setName(String name) {
         this.name = name;
     }
-
 }

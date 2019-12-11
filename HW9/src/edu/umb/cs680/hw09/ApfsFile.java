@@ -15,4 +15,9 @@ public class ApfsFile extends ApfsElement {
     public boolean isFile() {
         return true;
     }
+
+    //acept visitor
+    public void accept(ApfsFSVisitor v) {
+        v.visit(this);
+    }
 }
