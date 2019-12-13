@@ -16,8 +16,8 @@ public class DrawerClosedNotPlaying implements State {
 
 	@Override
 	public void openCloseButtonPushed() {
-		player.open();
-		player.changeState(DrawerOpen.getInstance());			
+		DVDPlayer.open();
+		DVDPlayer.changeState(DrawerOpen.getInstance());			
 	}
 
 	@Override

@@ -14,31 +14,32 @@ public class DVDPlayer {
 		}
 		return instance;
 	}
-	
-	public State changeState(State state) {
+	public static State getState() {
+		return DVDPlayer.state;
+	}
+	public static State changeState(State state) {
 		DVDPlayer.state = state;
 		return DVDPlayer.state;
 	}
-	public void openCloseButtonPushed() {
+	public static void openCloseButtonPushed() {
 		state.openCloseButtonPushed();
 	}
-	public void playButtonPushed() {
+	public static void playButtonPushed() {
 		state.playButtonPushed();
-		
 	}
-	public void stopButtonPushed() {
+	public static void stopButtonPushed() {
 		state.stopButtonPushed();
 	}
-	public void open() {
-		System.out.println("DVD player opened");
+	public static void open() {
+		System.out.print("DVD player opened");
 	}
-	public void close() {
-		System.out.println("DVD player closed");
+	public static void close() {
+		System.out.print("DVD player closed");
 	}
-	public void play() {
-		System.out.println("DVD player playing");
+	public static void play() {
+		System.out.print("DVD player playing");
 	}
-	public void stop() {
-		System.out.println("DVD player stopped");
+	public static void stop() {
+		System.out.print("DVD player stopped");
 	}
 }

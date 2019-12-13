@@ -1,11 +1,11 @@
 package edu.umb.cs680.hw11.observer;
 
 public class StockEvent {
-	public static String ticker;
-	public static float quote;
+	private String ticker;
+	private float quote;
 	public StockEvent(String t, float q) {
-		StockEvent.ticker = t;
-		StockEvent.quote = q;
+		this.ticker = t;
+		this.quote = q;
 	}
 	public String getTicker() {
 		return ticker;

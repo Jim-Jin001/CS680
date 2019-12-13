@@ -4,12 +4,16 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class TableObserver implements Observer{
-	private StockEvent arg;
 
 	@Override
 	public void update(Observable o, Object arg) {
-			this.arg = (StockEvent) arg;
-			System.out.println(" Table: " + this.arg.getTicker() + " " + this.arg.getQuote());
+		if(arg instanceof StockEvent) {
+			StockEvent stockEvent = (StockEvent) arg;
+			System.out.print("TableChart of StockEvent: " + stockEvent.getTicker() + " " + stockEvent.getQuote());
+		} else if(arg instanceof DJIAEvent){
+			DJIAEvent djiaEvent = (DJIAEvent) arg;
+			System.out.print("TableChart of DJIAEvent: " + djiaEvent.getDjia());
+		}
 	}
 
 }

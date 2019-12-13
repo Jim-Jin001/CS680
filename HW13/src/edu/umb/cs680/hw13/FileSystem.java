@@ -6,8 +6,7 @@ public abstract class FileSystem {
     protected static String name;
     protected static int capacity;
     protected static int id;
-    private static FileSystem fileSystem = null;
-    private LinkedList<ApfsDirectory> rootDirs = new LinkedList<ApfsDirectory>();;
+    private LinkedList<FSElement> rootDirs = new LinkedList<FSElement>();;
 
     // abstract createDefaultRoot
     protected abstract FSElement createDefaultRoot();
@@ -29,7 +28,7 @@ public abstract class FileSystem {
 
     // set root
     protected void setRoot(FSElement root) {
-        rootDirs.add((ApfsDirectory) root);
+        rootDirs.add(root);
     }
     
     // get name

@@ -23,7 +23,7 @@ public class DrawerClosedPlaying implements State {
 
 	@Override
 	public void stopButtonPushed() {
-		player.stop();
-		player.changeState(DrawerClosedNotPlaying.getInstance());
+		DVDPlayer.stop();
+		DVDPlayer.changeState(DrawerClosedNotPlaying.getInstance());
 	}
 }

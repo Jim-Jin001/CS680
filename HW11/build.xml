@@ -37,7 +37,8 @@
 			<classpath refid="classpath" /> 
 			<testclasses outputdir="test">
 				<fileset dir="${test/bin}">
-					<include name="edu/umb/cs680/hw10/*Test.class"/>
+					<include name="edu/umb/cs680/hw11/observer/*Test.class"/>
+					<include name="edu/umb/cs680/hw11/multicast/*Test.class"/>
 				</fileset>
 				<listener type="legacy-plain" sendSysOut="true"/>
 			</testclasses>

@@ -4,11 +4,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class PiechartObserver implements Observer{
-	private StockEvent arg;
+
 	@Override
 	public void update(Observable o, Object arg) {
-			this.arg = (StockEvent) arg;
-			System.out.println(" PieChart: " + this.arg.getTicker() + " " + this.arg.getQuote());
+		if(arg instanceof StockEvent) {
+			StockEvent stockEvent = (StockEvent) arg;
+			System.out.print("PieChart of StockEvent: " + stockEvent.getTicker() + " " + stockEvent.getQuote());
+		} else if(arg instanceof DJIAEvent){
+			DJIAEvent djiaEvent = (DJIAEvent) arg;
+			System.out.print("PieChart of DJIAEvent: " + djiaEvent.getDjia());
+		}
 	}
-
 }

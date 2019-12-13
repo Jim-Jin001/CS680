@@ -14,7 +14,4 @@ public class DJIAEvent {
 	public void setDjia(float djia) {
 		this.djia = djia;
 	}
-
-	
-
 }

@@ -14,15 +14,15 @@ public class DrawerOpen implements State {
 	
 	@Override
 	public void playButtonPushed() {
-		player.close();
-		player.play();
-		player.changeState(DrawerClosedPlaying.getInstance());
+		DVDPlayer.close();
+		DVDPlayer.play();
+		DVDPlayer.changeState(DrawerClosedPlaying.getInstance());
 
 	}
 	@Override
 	public void openCloseButtonPushed() {
-		player.close();
-		player.changeState(DrawerClosedNotPlaying.getInstance());
+		DVDPlayer.close();
+		DVDPlayer.changeState(DrawerClosedNotPlaying.getInstance());
 	}
 
 	@Override

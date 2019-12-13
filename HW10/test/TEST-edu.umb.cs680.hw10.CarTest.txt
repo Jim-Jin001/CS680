@@ -1,5 +1,0 @@
-Testcase: edu.umb.cs680.hw10.CarTest
-Test: getPriceTest() took 23 milli sec(s)
-Test: getMileageTest() took 1 milli sec(s)
-Test: getYearTest() took 0 milli sec(s)
-Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 41 milli sec(s)

@@ -1,10 +1,17 @@
 package edu.umb.cs680.hw11.multicast;
 
-public class PiechartObserver<T> implements Observer<T> {
+public class PiechartObserver implements DJIAQuoteObserver, StockQuoteObserver {
 	
 	@Override
-	public void update(T arg) {
-		System.out.println(" PieChart: " + arg.toString());
+	public void updateStock(StockEvent arg) {
+		StockEvent stockEvent = (StockEvent) arg;
+		System.out.print("PieChart of StockEvent: " + stockEvent.getTicker() + " " + stockEvent.getQuote());
+
 	}
 
+	@Override
+	public void updateDJIA(DJIAEvent arg) {
+		DJIAEvent djiaEvent = (DJIAEvent) arg;
+		System.out.print("PieChart of DJIAEvent: " + djiaEvent.getDjia());
+	}
 }

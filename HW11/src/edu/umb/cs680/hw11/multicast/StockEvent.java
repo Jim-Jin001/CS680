@@ -1,25 +1,17 @@
 package edu.umb.cs680.hw11.multicast;
 
 public class StockEvent {
-
+	
 	private String ticker;
 	private float quote;
-	
-	public StockEvent(String ticker, float quote){
-		this.ticker = ticker;
-		this.quote = quote;
+	public StockEvent(String t, float q) {
+		this.ticker = t;
+		this.quote = q;
 	}
-	
-	public String getTicker(){
-		return this.ticker;
+	public String getTicker() {
+		return ticker;
 	}
-	
-	public float getQuote(){
-		return this.quote;
-	}
-	
-	@Override
-	public String toString(){
-		return ticker + " " + quote; 
+	public float getQuote() {
+		return quote;
 	}
 }
